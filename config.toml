@@ -1,0 +1,37 @@
+[validation]
+weight.min = 0.0
+# weight.max is required, but setting it to 0.0 disables the maximum limit.
+# Recommended to use 120.0 (or an appropriate float value)
+weight.max = 0.0
+competitions.min = 0
+competitions.max = 1
+competitions.price = 22.0
+coaching.min = 0
+coaching.max = 5
+coaching.price = 9.50
+
+[weight_categories]
+fly_weight = 0.0
+light_weight = 66.0
+light_middle_weight = 73.0
+middle_weight = 81.0
+light_heavy_weight = 90.0
+heavy_weight = 100.0
+
+[[training_plan]]
+name					= "BEGINNER"
+sessions				= 2
+price					= 25.0
+competition_validity	= false
+
+[[training_plan]]
+name					= "INTERMEDIATE"
+sessions				= 3
+price					= 30.0
+competition_validity	= true
+
+[[training_plan]]
+name					= "ELITE"
+sessions				= 5
+price					= 35.0
+competition_validity	= true

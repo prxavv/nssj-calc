@@ -1,0 +1,5 @@
+[format]
+indent-style = "tab"
+
+[lint]
+ignore = ["W191", "E111", "E114"]

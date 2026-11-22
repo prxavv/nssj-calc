@@ -1,0 +1,17 @@
+[project]
+name = "nssj-calc"
+version = "0.1.0"
+description = "Calculate stuff duh"
+readme = "README.md"
+authors = [{ name = "prxavv", email = "297937084+prxavv@users.noreply.github.com" }]
+requires-python = ">=3.14"
+dependencies = [
+	"pydantic>=2.14"
+]
+
+[project.scripts]
+nssj-calc = "nssj_calc:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
