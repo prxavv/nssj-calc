@@ -184,9 +184,14 @@ class Validator:
 			) and CONFIG.validation.weight.min <= value:
 				return value
 			else:
-				print(
-					f"Enter a valid weight! Must be numerical and between {CONFIG.validation.weight.min} and {CONFIG.validation.weight.max}."
-				)
+				if CONFIG.validation.weight.max == 0.0:
+					print(
+						f"Enter a valid weight! Must be numerical and above {CONFIG.validation.weight.min}"
+					)
+				else:
+					print(
+						f"Enter a valid weight! Must be numerical and between {CONFIG.validation.weight.min} and {CONFIG.validation.weight.max}."
+					)
 
 	def training_plan(self, message: str) -> TrainingPlan:
 		"""Takes a message and returns inputs as `TrainingPlan`.

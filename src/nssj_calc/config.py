@@ -91,10 +91,12 @@ class Config(BaseModel):
 		try:
 			config = cls.model_validate(config)
 		except ValidationError:
-			print("config.toml has wrong types! Could not be validated. Using default config.")
+			print(
+				"config.toml has wrong types! Could not be validated. Using default config."
+			)
 			print("Delete the config.toml file to generate a new config.toml.")
 			config = cls.model_validate(DEFAULT_CONFIG)
-		
+
 		if not config.weight_categories:
 			raise ValueError(f"No [weight_categories] found in {fpath.resolve()}")
 
