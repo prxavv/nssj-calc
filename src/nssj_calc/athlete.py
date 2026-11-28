@@ -71,7 +71,7 @@ class Athlete:
 
 		# Calculate bounds and return with change sign
 		if upper_bound is not None and weight >= upper_bound:
-			difference = upper_bound - weight
+			difference = round(upper_bound - 0.01, 2) - weight
 			return f"{difference:+.2f}"
 
 		if weight < target.value:
@@ -102,8 +102,7 @@ class Athlete:
 
 		total = training_plan + private_coaching + competitions
 
-		# Complex calculations are separated into functions and
-		# called inside this array
+		# Complex calculations are separated into functions and called inside this array
 		lines = [
 			header,
 			self.__fmt_row(width, "Athlete Name:", self.name),

@@ -68,6 +68,11 @@ class Config(BaseModel):
 	training_plan: list[TrainingPlanRaw] = []
 
 	@classmethod
+	def __from_default(cls) -> Config:
+		obj = tomllib.loads(DEFAULT_CONFIG)
+		return cls.model_validate(obj)
+
+	@classmethod
 	def new(cls, path: str = "config.toml", _retried: bool = False) -> Config:
 		"""Generates the `Config` Enum from `config.toml`.
 
@@ -84,8 +89,19 @@ class Config(BaseModel):
 				config = tomllib.load(file)
 		except FileNotFoundError:
 			if _retried:
-				raise
-			_ = fpath.write_text(DEFAULT_CONFIG, "utf-8")
+				print(
+					f"Could not find or create {fpath.resolve()}! Using default config."
+				)
+				return cls.__from_default()
+
+			try:
+				_ = fpath.write_text(DEFAULT_CONFIG, "utf-8")
+			except OSError as err:
+				print(
+					f"Could not write default config to {fpath.resolve()}! Error code: {err}. Using default config."
+				)
+				return cls.__from_default()
+
 			return cls.new(path, _retried=True)
 
 		try:
@@ -95,10 +111,13 @@ class Config(BaseModel):
 				"config.toml has wrong types! Could not be validated. Using default config."
 			)
 			print("Delete the config.toml file to generate a new config.toml.")
-			config = cls.model_validate(DEFAULT_CONFIG)
+			config = cls.__from_default()
 
 		if not config.weight_categories:
-			raise ValueError(f"No [weight_categories] found in {fpath.resolve()}")
+			print(
+				f"No [weight_categories] found in {fpath.resolve()}! Using default config."
+			)
+			config = cls.__from_default()
 
 		return config
 

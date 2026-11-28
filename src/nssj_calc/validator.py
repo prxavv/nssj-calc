@@ -39,7 +39,7 @@ class Validator:
 			print(f"-	{option}")
 
 		while True:
-			value = input("> ").strip()
+			value = input("> ").strip().lower()
 
 			# Simple validation if options
 			if options and value not in options:
