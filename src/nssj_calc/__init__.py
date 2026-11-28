@@ -1,8 +1,14 @@
 from nssj_calc.athlete import Athlete
 from nssj_calc.validator import Validator
 
+# pyright: reportAny=false
+
 
 def onboarding() -> Athlete:
+	"""Orchestrates the program, by taking all inputs, and returning an `Athlete`.
+
+	Returns:
+		`Athlete` after all inputs."""
 	vdt = Validator()
 
 	name = vdt.name("What's your name?")
@@ -11,7 +17,7 @@ def onboarding() -> Athlete:
 	training_plan = vdt.training_plan("Enter the plan you'd like to join")
 
 	competitions = 0
-	if training_plan.value.competition_validity:  # pyright: ignore[reportAny]
+	if training_plan.value.competition_validity:
 		competitions = vdt.competitions(
 			"You're eligible to enter competitions.\nHow many competitions would you like to enter?"
 		)
@@ -26,7 +32,14 @@ def onboarding() -> Athlete:
 
 
 def main() -> None:
-	print(onboarding())
+	"""Entrypoint to the application.
+	Repeats until terminated or quit."""
+	loop = True
+	while loop:
+		print(onboarding())
+
+		validator = Validator()
+		loop = validator.add_athlete("Would you like to add another athlete? (y/n)")
 
 
 if __name__ == "__main__":

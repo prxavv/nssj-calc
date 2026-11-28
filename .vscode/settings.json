@@ -1,0 +1,103 @@
+{
+	// QOL Settings
+	"editor.formatOnPaste": true,
+	"editor.autoIndentOnPaste": true,
+	"git.autofetch": true,
+
+	// Indent Settings
+	"editor.indentSize": 4,
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": true,
+
+	"workbench.settings.applyToAllProfiles": [
+		"editor.indentSize",
+		"editor.tabSize",
+		"editor.insertSpaces",
+		"editor.detectIndentation"
+	],
+
+	// Python settings
+	"python.languageServer": "None",	// To allow ty to work; Or use anything you prefer =P
+	"ty.disableLanguageServices": true,
+	"python.analysis.typeCheckingMode": "strict",
+	"python.analysis.autoSearchPaths": true,
+	"python.analysis.useLibraryCodeForTypes": true,
+	"python-envs.alwaysUseUv": true,
+
+	"[python]": {
+		"editor.defaultFormatter": "charliermarsh.ruff",	// This is off limits though
+		"editor.tabSize": 4,
+		"editor.insertSpaces": false,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.ruff": "explicit",
+			"source.organizeImports.ruff": "always"
+		},
+	},
+
+	/// Python: Theme Fix
+	"editor.tokenColorCustomizations": {
+		"[Black]": {	// I use `Jaakko.black`, and these themes do not work properly due to my
+						// LSP being weird. I customized them... sort of.
+			"textMateRules": [
+				{
+					"name": "Python: Variables & Arguments",
+					"scope": [
+						"source.python",
+						"meta.function-call.arguments.python",
+					],
+					"settings": {
+						"foreground": "#63B0C6"
+					}
+				},
+				{
+					"name": "Python: Subroutines",
+					"scope": [
+						"meta.function-call.python",
+						"meta.function.decorator.python",
+					],
+					"settings": {
+						"foreground": "#E9AEBA"
+					}
+				},
+				{
+					"name": "Python: Keywords [Fix]",
+					"scope": [
+						"variable.parameter.function.language.special.self.python"
+					],
+					"settings": {
+						"foreground": "#E9CA5C"
+					}
+				},
+				{
+					"name": "Python: Separator [Fix]",
+					"scope": [
+						"meta.attribute.python",
+						"meta.class.python",
+						"punctuation.section.function.begin.python",
+						"punctuation.section.function.lambda.begin.python",
+						"punctuation.separator.annotation.result.python",
+						"punctuation.separator.annotation.python",
+						"punctuation.separator.arguments.python",
+						"punctuation.separator.colon.python",
+						"punctuation.separator.dict.python",
+						"punctuation.separator.element.python",
+						"punctuation.separator.parameters.python",
+						"punctuation.separator.period.python",
+						"punctuation.separator.slice.python",
+					],
+					"settings": {
+						"foreground": "#D4D4D4"
+					}
+				},
+				{
+					"name": "Python: Data Types [Fix]",
+					"scope": "meta.indexed-name.python",
+					"settings": {
+						"foreground": "#B5B5AD"
+					}
+				},
+			]
+		}
+	}
+}
